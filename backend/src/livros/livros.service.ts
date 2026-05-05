@@ -28,15 +28,21 @@ export class LivrosService {
     return `This action returns a #${id} livro`;
   }
 
-  update(id: number, updateLivroDto: UpdateLivroDto) {
+  update(id: number, dados: Partial<Livro>) {
+    const index = this.livros.findIndex(livro => livro.id == id);
+    if (index >= 0) {
+      
+      return `O livro #${id} foi removido`;
+    }
     return `This action updates a #${id} livro`;
   }
 
   remove(id: number) {
-    const index = this.livros.findIndex(livro=> livro.id==id);
-    if (index >=0){
-      this.livros.splice
+    const index = this.livros.findIndex(livro => livro.id == id);
+    if (index >= 0) {
+      this.livros.splice(index, 1)
+      return `O livro #${id} foi removido`;
     }
-    return `This action removes a #${id} livro`;
+    return `O livro #${id} não foi encontrado`
   }
 }
