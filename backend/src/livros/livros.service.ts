@@ -31,10 +31,10 @@ export class LivrosService {
   update(id: number, dados: Partial<Livro>) {
     const index = this.livros.findIndex(livro => livro.id == id);
     if (index >= 0) {
-      
-      return `O livro #${id} foi removido`;
+      this.livros[index]={...this.livros[index],...dados};
+      return `O livro #${id} foi atualizado`;
     }
-    return `This action updates a #${id} livro`;
+    return `O livro #${id} não foi atualizado`;
   }
 
   remove(id: number) {
